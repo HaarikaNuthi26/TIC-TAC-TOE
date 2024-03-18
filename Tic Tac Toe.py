@@ -1,26 +1,27 @@
 #Initial game board
 def initial_board():
-    print("      |      |      ")
+    print("      |       |      ")
     print("  1  |  2   |  3   ")
-    print("----- | ----- | -----")
+    print("---- | ---- | ----")
     print("  4  |  5   |  6   ")
-    print("----- | ----- | -----")
+    print("---- | ---- | ----")
     print("  7  |  8   |  9   ")
-    print("      |      |      ")
+    print("      |       |      ")
 
 #Function to print board
 def print_board(board):
     print("\n")
     print(f"\t  {board[0]}  |  {board[1]}  |  {board[2]}  ")
-    print("\t----|-----|----")
+    print("\t-----|-----|-----")
     print(f"\t  {board[3]}  |  {board[4]}  |  {board[5]}  ")
-    print("\t----|-----|----")
-    print(f"\t  {board[6]}  |  {board[7]}  |  {board[8]}  ")
-
+    print("\t-----|-----|-----")
+    print(f"\t  {board[6]}  |  {board[7]}  |  {board[8]}  ")    
+    print("\n")
+    
 #Function to print the game instructions
 def instructions():
     print("WELCOME TO TIC TAC TOE GAME")
-    print("_____INSTRUCTIONS_____")
+    print("\n_____INSTRUCTIONS_____")
     print("Following is the game board")
     initial_board()
     print("1. Player has to choose the symbol")
@@ -56,6 +57,7 @@ def get_ply_input(board, current_ply):
             return move - 1
         else:
             print("Invalid move...!! Please choose a valid position")
+            print("\n")
 
 #Function to switch the player
 def switch_player(current_ply):
@@ -96,6 +98,14 @@ def tic_tac_toe():
             break
         #switch players
         current_ply = player2 if current_ply == player1 else player1
+        #After every move checks for the winner
+        if check_winner(board, symbol[player2]):
+            print_board(board)
+            print(f"{player2} wins the game!")
+            break
+        #Check for the tie
+        if check_draw(board):
+            break
 
 #Main function 
 if __name__ == "__main__":
